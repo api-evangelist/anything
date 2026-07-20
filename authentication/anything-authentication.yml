@@ -1,0 +1,14 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/anything-openapi-original.json
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: 'Use your Anything API key as the Basic auth username and leave the password
+    empty. Example credentials: anything_xxx:'
+  sources:
+  - openapi/anything-openapi-original.json
