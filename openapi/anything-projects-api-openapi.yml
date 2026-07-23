@@ -1,0 +1,1326 @@
+openapi: 3.1.0
+info:
+  title: Anything Assets Projects API
+  version: 0.1.0
+  description: The Anything API is the fastest way for agents to build and launch mobile and web apps.
+servers:
+- url: /
+tags:
+- name: Projects
+paths:
+  /v0/api/projects:
+    get:
+      summary: List accessible projects
+      description: Returns project groups the authenticated user can access, optionally filtered by organization or search query.
+      tags:
+      - Projects
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: false
+        name: organizationId
+        in: query
+      - schema:
+          type: string
+        required: false
+        name: query
+        in: query
+      - schema:
+          type: integer
+          exclusiveMinimum: 0
+          maximum: 100
+        required: false
+        name: limit
+        in: query
+      responses:
+        '200':
+          description: Projects list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projects:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        name:
+                          type: string
+                        slug:
+                          type:
+                          - string
+                          - 'null'
+                        organizationId:
+                          type: string
+                          format: uuid
+                        organizationName:
+                          type: string
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                      required:
+                      - id
+                      - name
+                      - slug
+                      - organizationId
+                      - organizationName
+                      - createdAt
+                      - updatedAt
+                required:
+                - projects
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+    post:
+      summary: Create a new project
+      description: Creates a new project and starts initial generation from a prompt.
+      tags:
+      - Projects
+      security:
+      - basicAuth: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                prompt:
+                  type: string
+                  minLength: 1
+                organizationId:
+                  type: string
+                  format: uuid
+              required:
+              - prompt
+              - organizationId
+      responses:
+        '201':
+          description: Project created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projectGroupId:
+                    type: string
+                    format: uuid
+                  revisionId:
+                    type: string
+                    format: uuid
+                required:
+                - projectGroupId
+                - revisionId
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '500':
+          description: Failed to start generation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/projects/{projectGroupId}/duplicate:
+    post:
+      summary: Duplicate a project
+      description: Duplicates an existing project group into the same organization and returns the new project group ID.
+      tags:
+      - Projects
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+      responses:
+        '201':
+          description: Duplicate created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projectGroupId:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                required:
+                - projectGroupId
+                - name
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/projects/{projectGroupId}:
+    get:
+      summary: Get project info
+      description: Returns project group details including modules and dev server status.
+      tags:
+      - Projects
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      responses:
+        '200':
+          description: Project group info
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  slug:
+                    type:
+                    - string
+                    - 'null'
+                  filesystemVersion:
+                    type:
+                    - string
+                    - 'null'
+                  platform:
+                    type: string
+                    enum:
+                    - web
+                    - mobile
+                    - both
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  devServerUrl:
+                    type:
+                    - string
+                    - 'null'
+                  mobilePreviewUrl:
+                    type:
+                    - string
+                    - 'null'
+                  publishedUrls:
+                    type: array
+                    items:
+                      type: string
+                    description: 'Public URLs where the app is served once published: custom domains when configured, otherwise the hosted Anything domain.'
+                  latestPublishedUrl:
+                    type:
+                    - string
+                    - 'null'
+                    description: Public URL of the live app. Null if the project has never been successfully published.
+                  files:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        name:
+                          type: string
+                        slug:
+                          type:
+                          - string
+                          - 'null'
+                        moduleType:
+                          type: string
+                        pathSegment:
+                          type:
+                          - string
+                          - 'null'
+                        path:
+                          type:
+                          - string
+                          - 'null'
+                      required:
+                      - id
+                      - name
+                      - slug
+                      - moduleType
+                      - pathSegment
+                      - path
+                required:
+                - id
+                - name
+                - slug
+                - filesystemVersion
+                - platform
+                - createdAt
+                - updatedAt
+                - devServerUrl
+                - mobilePreviewUrl
+                - publishedUrls
+                - latestPublishedUrl
+                - files
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+    delete:
+      summary: Delete a project
+      description: Marks a project group for deletion and schedules permanent cleanup.
+      tags:
+      - Projects
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      responses:
+        '200':
+          description: Project marked for deletion
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  projectGroupId:
+                    type: string
+                    format: uuid
+                required:
+                - success
+                - projectGroupId
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/projects/{projectGroupId}/auth/providers:
+    get:
+      summary: Inspect auth provider configuration
+      description: Returns the auth providers configured for a project group, including the secret metadata used by the Authentication settings UI.
+      tags:
+      - Projects
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      responses:
+        '200':
+          description: Auth provider configuration
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  authEnabled:
+                    type: boolean
+                  providers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        provider:
+                          type: string
+                          enum:
+                          - google
+                          - email
+                          - facebook
+                          - twitter
+                          - apple
+                        enabled:
+                          type: boolean
+                        secrets:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                format: uuid
+                              envKey:
+                                type: string
+                              displayName:
+                                type: string
+                              environment:
+                                type: string
+                            required:
+                            - id
+                            - envKey
+                            - displayName
+                            - environment
+                      required:
+                      - provider
+                      - enabled
+                      - secrets
+                required:
+                - authEnabled
+                - providers
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/projects/{projectGroupId}/rename:
+    post:
+      summary: Rename a project group
+      description: Renames a project group the authenticated user can access and returns the updated metadata.
+      tags:
+      - Projects
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 100
+              required:
+              - name
+      responses:
+        '200':
+          description: Project group renamed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  projectGroupId:
+                    type: string
+                    format: uuid
+                  name:
+                    type: string
+                  slug:
+                    type:
+                    - string
+                    - 'null'
+                  updatedAt:
+                    type: string
+                    format: date-time
+                required:
+                - success
+                - projectGroupId
+                - name
+                - slug
+                - updatedAt
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/projects/{projectGroupId}/status:
+    get:
+      summary: Read project status
+      description: Returns a small status document (latest revision status + deployment summary) for cheap polling. Avoids the message body payload.
+      tags:
+      - Projects
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      responses:
+        '200':
+          description: Project status
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projectGroupId:
+                    type: string
+                    format: uuid
+                  latestRevisionId:
+                    type:
+                    - string
+                    - 'null'
+                    format: uuid
+                  status:
+                    type:
+                    - string
+                    - 'null'
+                  buildErrors:
+                    type:
+                    - string
+                    - 'null'
+                  deployment:
+                    type:
+                    - object
+                    - 'null'
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                      url:
+                        type:
+                        - string
+                        - 'null'
+                        description: Public URL where the app is served. Null until the deployment succeeds.
+                    required:
+                    - id
+                    - status
+                    - url
+                  updatedAt:
+                    type: string
+                    format: date-time
+                required:
+                - projectGroupId
+                - latestRevisionId
+                - status
+                - buildErrors
+                - deployment
+                - updatedAt
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/projects/{projectGroupId}/restore:
+    post:
+      summary: Restore a deleted project
+      description: Restores a project group that has been marked for deletion and cancels its pending cleanup job.
+      tags:
+      - Projects
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      responses:
+        '200':
+          description: Project restored successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  projectGroupId:
+                    type: string
+                    format: uuid
+                required:
+                - success
+                - projectGroupId
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/projects/{projectGroupId}/publish:
+    post:
+      summary: Publish project
+      description: Publishes the project, making it publicly accessible. Optionally claims a custom slug.
+      tags:
+      - Projects
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                slug:
+                  type: string
+      responses:
+        '200':
+          description: Project published
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  projectGroupId:
+                    type: string
+                    format: uuid
+                  slug:
+                    type:
+                    - string
+                    - 'null'
+                  deploymentId:
+                    type: string
+                    format: uuid
+                required:
+                - success
+                - projectGroupId
+                - slug
+                - deploymentId
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/projects/{projectGroupId}/unpublish:
+    post:
+      summary: Unpublish project
+      description: Removes the published app for a project group without deleting the project group itself.
+      tags:
+      - Projects
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      responses:
+        '200':
+          description: Project unpublished
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  projectGroupId:
+                    type: string
+                    format: uuid
+                required:
+                - success
+                - projectGroupId
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'Use your Anything API key as the Basic auth username and leave the password empty. Example credentials: anything_xxx:'

@@ -1,0 +1,36 @@
+generated: '2026-07-17'
+method: searched
+source: https://www.anything.com/docs/cli
+binary: anything
+install:
+- method: npm
+  command: npm install -g @anythingai/cli
+requirements: Node.js 24 or later
+package: packages/anything-packages.yml
+commands:
+- group: auth
+  summary: Authenticate the CLI
+- group: projects
+  summary: Create and manage apps
+- group: publish
+  summary: Deploy / take an app live
+- group: databases
+  summary: Manage project databases
+- group: domains
+  summary: Manage custom domains
+- group: deployments
+  summary: Deployment history and rollbacks
+- group: members
+  summary: Manage team members
+- group: assets
+  summary: Manage image assets
+- group: user
+  summary: Account information
+- group: orgs
+  summary: Organization management
+- group: ship
+  summary: Combined create/generate/publish workflow
+- group: update
+  summary: Update the CLI
+- group: link/unlink/pull/watch
+  summary: Local file sync operations

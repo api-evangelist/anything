@@ -1,0 +1,22 @@
+generated: '2026-07-17'
+method: probed
+note: api.anything.com returned 404 for all probed well-known paths (no discovery
+  surface). www/root host returned 429 (rate-limited, inconclusive). No 200 documents
+  captured.
+hosts:
+- host: https://api.anything.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 404
+  - path: /.well-known/openid-configuration
+    status: 404
+  - path: /.well-known/oauth-authorization-server
+    status: 404
+- host: https://www.anything.com
+  documents:
+  - path: /.well-known/security.txt
+    status: 429
+  - path: /.well-known/openid-configuration
+    status: 429
+  - path: /.well-known/api-catalog
+    status: 429

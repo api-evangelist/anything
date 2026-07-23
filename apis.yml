@@ -1,9 +1,26 @@
 aid: anything
 name: Anything
-description: 'Anything is a company surfaced as a portfolio company of bessemer-venture-partners, uncork-capital
-  and added to the API Evangelist network as a stub for enrichment. Sector: ai-ml. This profile is a lead
-  awaiting the enrichment pipeline.'
+description: 'Anything is an AI-powered app builder that turns natural-language prompts
+  into working web and mobile applications, complete with a built-in PostgreSQL database,
+  authentication, backend functions, custom domains, and 100+ third-party integrations.
+  Its public REST API (v0) lets agents and developers programmatically create projects,
+  request AI-generated changes, provision databases, manage secrets and domains, publish
+  web apps, and submit mobile apps to the App Store and Play Store. Backed by Bessemer
+  Venture Partners and Uncork Capital.'
 url: https://raw.githubusercontent.com/api-evangelist/anything/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.anything.com/opengraph-image-ontcvn.png?ad4f87502cada048
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -17,12 +34,271 @@ modified: '2026-07-17'
 tags:
 - Company
 - Ai Ml
-apis: []
+- App Builder
+- Low Code
+- No Code
+- Developer Tools
+- AI Agents
+- Mobile
+apis:
+- aid: anything:anything-assets-api
+  name: Anything Assets API
+  description: The Assets API from Anything — 2 operation(s) for assets.
+  humanURL: https://www.anything.com/docs/api-reference
+  baseURL: https://api.anything.com/v0/api
+  tags:
+  - Assets
+  properties:
+  - type: OpenAPI
+    url: openapi/anything-assets-api-openapi.yml
+  - type: APIReference
+    url: https://www.anything.com/docs/api-reference
+  - type: Authentication
+    url: authentication/anything-authentication.yml
+- aid: anything:anything-databases-api
+  name: Anything Databases API
+  description: The Databases API from Anything — 5 operation(s) for databases.
+  humanURL: https://www.anything.com/docs/api-reference
+  baseURL: https://api.anything.com/v0/api
+  tags:
+  - Databases
+  properties:
+  - type: OpenAPI
+    url: openapi/anything-databases-api-openapi.yml
+  - type: APIReference
+    url: https://www.anything.com/docs/api-reference
+  - type: Authentication
+    url: authentication/anything-authentication.yml
+- aid: anything:anything-deployments-api
+  name: Anything Deployments API
+  description: The Deployments API from Anything — 4 operation(s) for deployments.
+  humanURL: https://www.anything.com/docs/api-reference
+  baseURL: https://api.anything.com/v0/api
+  tags:
+  - Deployments
+  properties:
+  - type: OpenAPI
+    url: openapi/anything-deployments-api-openapi.yml
+  - type: APIReference
+    url: https://www.anything.com/docs/api-reference
+  - type: Authentication
+    url: authentication/anything-authentication.yml
+- aid: anything:anything-domains-api
+  name: Anything Domains API
+  description: The Domains API from Anything — 3 operation(s) for domains.
+  humanURL: https://www.anything.com/docs/api-reference
+  baseURL: https://api.anything.com/v0/api
+  tags:
+  - Domains
+  properties:
+  - type: OpenAPI
+    url: openapi/anything-domains-api-openapi.yml
+  - type: APIReference
+    url: https://www.anything.com/docs/api-reference
+  - type: Authentication
+    url: authentication/anything-authentication.yml
+- aid: anything:anything-files-api
+  name: Anything Files API
+  description: The Files API from Anything — 1 operation(s) for files.
+  humanURL: https://www.anything.com/docs/api-reference
+  baseURL: https://api.anything.com/v0/api
+  tags:
+  - Files
+  properties:
+  - type: OpenAPI
+    url: openapi/anything-files-api-openapi.yml
+  - type: APIReference
+    url: https://www.anything.com/docs/api-reference
+  - type: Authentication
+    url: authentication/anything-authentication.yml
+- aid: anything:anything-generation-api
+  name: Anything Generation API
+  description: The Generation API from Anything — 1 operation(s) for generation.
+  humanURL: https://www.anything.com/docs/api-reference
+  baseURL: https://api.anything.com/v0/api
+  tags:
+  - Generation
+  properties:
+  - type: OpenAPI
+    url: openapi/anything-generation-api-openapi.yml
+  - type: APIReference
+    url: https://www.anything.com/docs/api-reference
+  - type: Authentication
+    url: authentication/anything-authentication.yml
+- aid: anything:anything-logs-api
+  name: Anything Logs API
+  description: The Logs API from Anything — 1 operation(s) for logs.
+  humanURL: https://www.anything.com/docs/api-reference
+  baseURL: https://api.anything.com/v0/api
+  tags:
+  - Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/anything-logs-api-openapi.yml
+  - type: APIReference
+    url: https://www.anything.com/docs/api-reference
+  - type: Authentication
+    url: authentication/anything-authentication.yml
+- aid: anything:anything-messages-api
+  name: Anything Messages API
+  description: The Messages API from Anything — 1 operation(s) for messages.
+  humanURL: https://www.anything.com/docs/api-reference
+  baseURL: https://api.anything.com/v0/api
+  tags:
+  - Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/anything-messages-api-openapi.yml
+  - type: APIReference
+    url: https://www.anything.com/docs/api-reference
+  - type: Authentication
+    url: authentication/anything-authentication.yml
+- aid: anything:anything-mobile-api
+  name: Anything Mobile API
+  description: The Mobile API from Anything — 3 operation(s) for mobile.
+  humanURL: https://www.anything.com/docs/api-reference
+  baseURL: https://api.anything.com/v0/api
+  tags:
+  - Mobile
+  properties:
+  - type: OpenAPI
+    url: openapi/anything-mobile-api-openapi.yml
+  - type: APIReference
+    url: https://www.anything.com/docs/api-reference
+  - type: Authentication
+    url: authentication/anything-authentication.yml
+- aid: anything:anything-organizations-api
+  name: Anything Organizations API
+  description: The Organizations API from Anything — 4 operation(s) for organizations.
+  humanURL: https://www.anything.com/docs/api-reference
+  baseURL: https://api.anything.com/v0/api
+  tags:
+  - Organizations
+  properties:
+  - type: OpenAPI
+    url: openapi/anything-organizations-api-openapi.yml
+  - type: APIReference
+    url: https://www.anything.com/docs/api-reference
+  - type: Authentication
+    url: authentication/anything-authentication.yml
+- aid: anything:anything-projects-api
+  name: Anything Projects API
+  description: The Projects API from Anything — 9 operation(s) for projects.
+  humanURL: https://www.anything.com/docs/api-reference
+  baseURL: https://api.anything.com/v0/api
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/anything-projects-api-openapi.yml
+  - type: APIReference
+    url: https://www.anything.com/docs/api-reference
+  - type: Authentication
+    url: authentication/anything-authentication.yml
+- aid: anything:anything-secrets-api
+  name: Anything Secrets API
+  description: The Secrets API from Anything — 2 operation(s) for secrets.
+  humanURL: https://www.anything.com/docs/api-reference
+  baseURL: https://api.anything.com/v0/api
+  tags:
+  - Secrets
+  properties:
+  - type: OpenAPI
+    url: openapi/anything-secrets-api-openapi.yml
+  - type: APIReference
+    url: https://www.anything.com/docs/api-reference
+  - type: Authentication
+    url: authentication/anything-authentication.yml
+- aid: anything:anything-settings-api
+  name: Anything Settings API
+  description: The Settings API from Anything — 1 operation(s) for settings.
+  humanURL: https://www.anything.com/docs/api-reference
+  baseURL: https://api.anything.com/v0/api
+  tags:
+  - Settings
+  properties:
+  - type: OpenAPI
+    url: openapi/anything-settings-api-openapi.yml
+  - type: APIReference
+    url: https://www.anything.com/docs/api-reference
+  - type: Authentication
+    url: authentication/anything-authentication.yml
+- aid: anything:anything-user-api
+  name: Anything User API
+  description: The User API from Anything — 1 operation(s) for user.
+  humanURL: https://www.anything.com/docs/api-reference
+  baseURL: https://api.anything.com/v0/api
+  tags:
+  - User
+  properties:
+  - type: OpenAPI
+    url: openapi/anything-user-api-openapi.yml
+  - type: APIReference
+    url: https://www.anything.com/docs/api-reference
+  - type: Authentication
+    url: authentication/anything-authentication.yml
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: DeveloperPortal
+  url: https://www.anything.com/docs
+- type: Documentation
+  url: https://www.anything.com/docs
+- type: APIReference
+  url: https://www.anything.com/docs/api-reference
+- type: GettingStarted
+  url: https://www.anything.com/docs/welcome
+- type: Support
+  url: https://www.anything.com/docs/support/help
+- type: Community
+  url: https://www.anything.com/docs/share/community
+- type: Blog
+  url: https://www.anything.com/blog
+- type: Pricing
+  url: https://www.anything.com/pricing
+- type: SignUp
+  url: https://www.anything.com/signup
+- type: TermsOfService
+  url: https://www.anything.com/tos
+- type: PrivacyPolicy
+  url: https://www.anything.com/privacy-policy
+- type: OpenAPI
+  url: openapi/anything-openapi-original.json
+- type: LLMsTxt
+  url: llms/anything-llms.txt
+- type: Authentication
+  url: authentication/anything-authentication.yml
+- type: Conventions
+  url: conventions/anything-conventions.yml
+- type: ErrorCatalog
+  url: errors/anything-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/anything-lifecycle.yml
+- type: Conformance
+  url: conformance/anything-conformance.yml
+- type: DataModel
+  url: data-model/anything-data-model.yml
+- type: MCPServer
+  url: mcp/anything-mcp.yml
+- type: Overlay
+  url: overlays/anything-openapi-overlay.yaml
+- type: Packages
+  url: packages/anything-packages.yml
+- type: CLI
+  url: cli/anything-cli.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: AgenticAccess
+  url: agentic-access/anything-agentic-access.yml
+- type: DomainSecurity
+  url: security/anything-domain-security.yml
 - type: Website
   url: https://www.anything.com/
+x-enrichment:
+  date: '2026-07-19'
+  status: backfilled
+  pass: local-v1
+  note: backfilled from .gitignore signal + verified work evidence

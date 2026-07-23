@@ -1,0 +1,147 @@
+generated: '2026-07-17'
+method: derived
+status: candidate
+server:
+  name: anything
+  transport: http
+note: No official hosted MCP server was found. Candidate tool list derived one-per-operation
+  from the OpenAPI (operationIds absent; tools keyed by method+path).
+tools:
+- name: get_current_user_info
+  description: Get current user info
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/me
+- name: list_organization_members
+  description: List organization members
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/organizations/{organizationId}/members
+- name: list_accessible_projects
+  description: List accessible projects
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/projects
+- name: create_a_new_project
+  description: Create a new project
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/projects
+- name: list_accessible_databases
+  description: List accessible databases
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/databases
+- name: create_a_database
+  description: Create a database
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/databases
+- name: list_organization_domains
+  description: List organization domains
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/domains
+- name: add_a_domain
+  description: Add a domain
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/domains
+- name: duplicate_a_project
+  description: Duplicate a project
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/projects/{projectGroupId}/duplicate
+- name: get_project_info
+  description: Get project info
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/projects/{projectGroupId}
+- name: delete_a_project
+  description: Delete a project
+  source_operation: openapi/anything-openapi-original.json#DELETE /v0/api/projects/{projectGroupId}
+- name: inspect_auth_provider_configuration
+  description: Inspect auth provider configuration
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/projects/{projectGroupId}/auth/providers
+- name: rename_a_project_group
+  description: Rename a project group
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/projects/{projectGroupId}/rename
+- name: request_a_change
+  description: Request a change
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/projects/{projectGroupId}/generate
+- name: read_messages
+  description: Read messages
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/projects/{projectGroupId}/messages
+- name: read_project_status
+  description: Read project status
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/projects/{projectGroupId}/status
+- name: restore_a_deleted_project
+  description: Restore a deleted project
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/projects/{projectGroupId}/restore
+- name: read_project_files
+  description: Read project files
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/projects/{projectGroupId}/files
+- name: read_recent_development_logs
+  description: Read recent development logs
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/projects/{projectGroupId}/logs
+- name: read_project_auth_settings
+  description: Read project auth settings
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/projects/{projectGroupId}/settings/auth
+- name: update_project_auth_settings
+  description: Update project auth settings
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/projects/{projectGroupId}/settings/auth
+- name: list_secrets
+  description: List secrets
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/projects/{projectGroupId}/secrets
+- name: add_secrets
+  description: Add secrets
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/projects/{projectGroupId}/secrets
+- name: delete_a_secret
+  description: Delete a secret
+  source_operation: openapi/anything-openapi-original.json#DELETE /v0/api/projects/{projectGroupId}/secrets/{secretId}
+- name: publish_project
+  description: Publish project
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/projects/{projectGroupId}/publish
+- name: start_an_app_store_submission
+  description: Start an App Store submission
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/projects/{projectGroupId}/submit
+- name: read_submission_status
+  description: Read submission status
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/projects/{projectGroupId}/submit/{submissionId}
+- name: get_play_store_setup_details
+  description: Get Play Store setup details
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/projects/{projectGroupId}/play-store-setup
+- name: unpublish_project
+  description: Unpublish project
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/projects/{projectGroupId}/unpublish
+- name: upload_an_asset
+  description: Upload an asset
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/projects/{projectGroupId}/assets
+- name: list_assets
+  description: List assets
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/projects/{projectGroupId}/assets
+- name: delete_an_asset
+  description: Delete an asset
+  source_operation: openapi/anything-openapi-original.json#DELETE /v0/api/projects/{projectGroupId}/assets/{assetId}
+- name: get_a_single_database
+  description: Get a single database
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/databases/{databaseId}
+- name: delete_a_database
+  description: Delete a database
+  source_operation: openapi/anything-openapi-original.json#DELETE /v0/api/databases/{databaseId}
+- name: query_a_database
+  description: Query a database
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/databases/{databaseId}/query
+- name: get_database_connection_string
+  description: Get database connection string
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/databases/{databaseId}/connection
+- name: reset_development_database
+  description: Reset development database
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/databases/{databaseId}/reset
+- name: remove_a_domain
+  description: Remove a domain
+  source_operation: openapi/anything-openapi-original.json#DELETE /v0/api/domains/{domainId}
+- name: verify_a_domain
+  description: Verify a domain
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/domains/{domainId}/verify
+- name: list_project_deployments
+  description: List project deployments
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/projects/{projectGroupId}/deployments
+- name: get_deployment_status
+  description: Get deployment status
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/deployments/{deploymentId}
+- name: get_deployment_logs
+  description: Get deployment logs
+  source_operation: openapi/anything-openapi-original.json#GET /v0/api/deployments/{deploymentId}/logs
+- name: rollback_a_deployment
+  description: Rollback a deployment
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/projects/{projectGroupId}/deployments/rollback
+- name: invite_a_member
+  description: Invite a member
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/organizations/{organizationId}/invites
+- name: remove_a_member
+  description: Remove a member
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/organizations/{organizationId}/members/remove
+- name: update_member_role
+  description: Update member role
+  source_operation: openapi/anything-openapi-original.json#POST /v0/api/organizations/{organizationId}/members/role

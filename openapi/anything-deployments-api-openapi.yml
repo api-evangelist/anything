@@ -1,0 +1,488 @@
+openapi: 3.1.0
+info:
+  title: Anything Assets Deployments API
+  version: 0.1.0
+  description: The Anything API is the fastest way for agents to build and launch mobile and web apps.
+servers:
+- url: /
+tags:
+- name: Deployments
+paths:
+  /v0/api/projects/{projectGroupId}/deployments:
+    get:
+      summary: List project deployments
+      description: Returns recent deployments for a project group, ordered by creation time descending.
+      tags:
+      - Deployments
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      - schema:
+          type: integer
+          exclusiveMinimum: 0
+          maximum: 100
+        required: false
+        name: limit
+        in: query
+      responses:
+        '200':
+          description: Deployments list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deployments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        projectGroupId:
+                          type: string
+                          format: uuid
+                        status:
+                          type: string
+                          enum:
+                          - PENDING
+                          - BUILDING
+                          - DEPLOYING
+                          - SUCCESS
+                          - FAILED
+                        url:
+                          type:
+                          - string
+                          - 'null'
+                          description: Public URL where the app is served. Null until the deployment succeeds.
+                        createdAt:
+                          type: string
+                          format: date-time
+                        completedAt:
+                          type:
+                          - string
+                          - 'null'
+                          format: date-time
+                      required:
+                      - id
+                      - projectGroupId
+                      - status
+                      - url
+                      - createdAt
+                      - completedAt
+                required:
+                - deployments
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/deployments/{deploymentId}:
+    get:
+      summary: Get deployment status
+      description: Returns the current state of a deployment, including build logs if available.
+      tags:
+      - Deployments
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: deploymentId
+        in: path
+      responses:
+        '200':
+          description: Deployment detail
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  deployment:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      projectGroupId:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                        - PENDING
+                        - BUILDING
+                        - DEPLOYING
+                        - SUCCESS
+                        - FAILED
+                      url:
+                        type:
+                        - string
+                        - 'null'
+                        description: Public URL where the app is served. Null until the deployment succeeds.
+                      createdAt:
+                        type: string
+                        format: date-time
+                      completedAt:
+                        type:
+                        - string
+                        - 'null'
+                        format: date-time
+                      buildLogs:
+                        type:
+                        - string
+                        - 'null'
+                      failureReason:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - id
+                    - projectGroupId
+                    - status
+                    - url
+                    - createdAt
+                    - completedAt
+                    - buildLogs
+                    - failureReason
+                required:
+                - deployment
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Deployment not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/deployments/{deploymentId}/logs:
+    get:
+      summary: Get deployment logs
+      description: Returns the build logs for a specific deployment.
+      tags:
+      - Deployments
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: deploymentId
+        in: path
+      responses:
+        '200':
+          description: Deployment logs
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  logs:
+                    type: string
+                  status:
+                    type: string
+                    enum:
+                    - PENDING
+                    - BUILDING
+                    - DEPLOYING
+                    - SUCCESS
+                    - FAILED
+                  failureReason:
+                    type:
+                    - string
+                    - 'null'
+                required:
+                - logs
+                - status
+                - failureReason
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Deployment not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/projects/{projectGroupId}/deployments/rollback:
+    post:
+      summary: Rollback a deployment
+      description: Deployment rollback is not yet implemented.
+      tags:
+      - Deployments
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      responses:
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '501':
+          description: Not implemented
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'Use your Anything API key as the Basic auth username and leave the password empty. Example credentials: anything_xxx:'

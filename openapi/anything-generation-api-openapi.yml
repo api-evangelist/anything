@@ -1,0 +1,148 @@
+openapi: 3.1.0
+info:
+  title: Anything Assets Generation API
+  version: 0.1.0
+  description: The Anything API is the fastest way for agents to build and launch mobile and web apps.
+servers:
+- url: /
+tags:
+- name: Generation
+paths:
+  /v0/api/projects/{projectGroupId}/generate:
+    post:
+      summary: Request a change
+      description: Sends a prompt to generate changes in an existing project. Optionally creates or continues a conversation thread.
+      tags:
+      - Generation
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                prompt:
+                  type: string
+                  minLength: 1
+                threadId:
+                  type:
+                  - string
+                  - 'null'
+                  format: uuid
+                createNewThread:
+                  type: boolean
+              required:
+              - prompt
+      responses:
+        '200':
+          description: Generation started
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  revisionId:
+                    type: string
+                    format: uuid
+                  threadId:
+                    type:
+                    - string
+                    - 'null'
+                    format: uuid
+                required:
+                - revisionId
+                - threadId
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '500':
+          description: Failed to start generation
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'Use your Anything API key as the Basic auth username and leave the password empty. Example credentials: anything_xxx:'

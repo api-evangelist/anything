@@ -1,0 +1,411 @@
+openapi: 3.1.0
+info:
+  title: Anything Assets Mobile API
+  version: 0.1.0
+  description: The Anything API is the fastest way for agents to build and launch mobile and web apps.
+servers:
+- url: /
+tags:
+- name: Mobile
+paths:
+  /v0/api/projects/{projectGroupId}/submit:
+    post:
+      summary: Start an App Store submission
+      description: Starts the Expo launch flow for an app store submission. Returns the session so clients can poll for launch URL readiness.
+      tags:
+      - Mobile
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                store:
+                  type: string
+                  enum:
+                  - app-store
+                  - play-store
+              required:
+              - store
+      responses:
+        '201':
+          description: Submission started
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  submission:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      projectGroupId:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                        - PENDING
+                        - CREATED
+                        - FAILED
+                      launchUrl:
+                        type:
+                        - string
+                        - 'null'
+                      authUrl:
+                        type:
+                        - string
+                        - 'null'
+                      errorMessage:
+                        type:
+                        - string
+                        - 'null'
+                      expiresAt:
+                        type:
+                        - string
+                        - 'null'
+                        format: date-time
+                    required:
+                    - id
+                    - projectGroupId
+                    - status
+                    - launchUrl
+                    - authUrl
+                    - errorMessage
+                    - expiresAt
+                required:
+                - success
+                - submission
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '500':
+          description: Failed to start submission
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/projects/{projectGroupId}/submit/{submissionId}:
+    get:
+      summary: Read submission status
+      description: Returns the current state of an Expo launch session for a project.
+      tags:
+      - Mobile
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: submissionId
+        in: path
+      responses:
+        '200':
+          description: Submission state
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  submission:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      projectGroupId:
+                        type: string
+                        format: uuid
+                      status:
+                        type: string
+                        enum:
+                        - PENDING
+                        - CREATED
+                        - FAILED
+                      launchUrl:
+                        type:
+                        - string
+                        - 'null'
+                      authUrl:
+                        type:
+                        - string
+                        - 'null'
+                      errorMessage:
+                        type:
+                        - string
+                        - 'null'
+                      expiresAt:
+                        type:
+                        - string
+                        - 'null'
+                        format: date-time
+                    required:
+                    - id
+                    - projectGroupId
+                    - status
+                    - launchUrl
+                    - authUrl
+                    - errorMessage
+                    - expiresAt
+                required:
+                - success
+                - submission
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Submission not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/projects/{projectGroupId}/play-store-setup:
+    get:
+      summary: Get Play Store setup details
+      description: Returns the package name to register and the service account email to invite in Google Play Console before starting a Play Store submission.
+      tags:
+      - Mobile
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      responses:
+        '200':
+          description: Play Store setup details
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  packageName:
+                    type: string
+                  serviceAccountEmail:
+                    type:
+                    - string
+                    - 'null'
+                required:
+                - packageName
+                - serviceAccountEmail
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'Use your Anything API key as the Basic auth username and leave the password empty. Example credentials: anything_xxx:'

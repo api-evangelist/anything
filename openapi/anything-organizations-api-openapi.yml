@@ -1,0 +1,511 @@
+openapi: 3.1.0
+info:
+  title: Anything Assets Organizations API
+  version: 0.1.0
+  description: The Anything API is the fastest way for agents to build and launch mobile and web apps.
+servers:
+- url: /
+tags:
+- name: Organizations
+paths:
+  /v0/api/organizations/{organizationId}/members:
+    get:
+      summary: List organization members
+      description: Returns collaborators and pending invites for an organization the authenticated user can access.
+      tags:
+      - Organizations
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: organizationId
+        in: path
+      responses:
+        '200':
+          description: Organization members
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  organization:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      name:
+                        type: string
+                      role:
+                        type:
+                        - string
+                        - 'null'
+                    required:
+                    - id
+                    - name
+                    - role
+                  collaborators:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        userId:
+                          type: string
+                          format: uuid
+                        email:
+                          type:
+                          - string
+                          - 'null'
+                        displayName:
+                          type: string
+                        role:
+                          type: string
+                        isMe:
+                          type: boolean
+                      required:
+                      - userId
+                      - email
+                      - displayName
+                      - role
+                      - isMe
+                  pendingInvites:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        toEmail:
+                          type: string
+                        expiresAt:
+                          type: string
+                          format: date-time
+                        status:
+                          type: string
+                          enum:
+                          - pending
+                          - expired
+                      required:
+                      - id
+                      - toEmail
+                      - expiresAt
+                      - status
+                required:
+                - organization
+                - collaborators
+                - pendingInvites
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/organizations/{organizationId}/invites:
+    post:
+      summary: Invite a member
+      description: Sends an invitation to join the organization. Requires OWNER or ADMIN role.
+      tags:
+      - Organizations
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: organizationId
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                role:
+                  type:
+                  - string
+                  - 'null'
+              required:
+              - email
+      responses:
+        '201':
+          description: Invite sent
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  invite:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        format: uuid
+                      toEmail:
+                        type: string
+                      expiresAt:
+                        type: string
+                        format: date-time
+                    required:
+                    - id
+                    - toEmail
+                    - expiresAt
+                required:
+                - success
+                - invite
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/organizations/{organizationId}/members/remove:
+    post:
+      summary: Remove a member
+      description: Removes a member from the organization. Requires OWNER or ADMIN role.
+      tags:
+      - Organizations
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: organizationId
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+              required:
+              - email
+      responses:
+        '200':
+          description: Member removed
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                required:
+                - success
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+  /v0/api/organizations/{organizationId}/members/role:
+    post:
+      summary: Update member role
+      description: Changes the role of an organization member. Requires OWNER or ADMIN role.
+      tags:
+      - Organizations
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: organizationId
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                role:
+                  type: string
+                  enum:
+                  - OWNER
+                  - ADMIN
+                  - EDITOR
+                  - VIEWER
+              required:
+              - email
+              - role
+      responses:
+        '200':
+          description: Role updated
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                  userId:
+                    type: string
+                    format: uuid
+                  role:
+                    type: string
+                required:
+                - success
+                - userId
+                - role
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'Use your Anything API key as the Basic auth username and leave the password empty. Example credentials: anything_xxx:'

@@ -1,0 +1,313 @@
+openapi: 3.1.0
+info:
+  title: Anything Assets Settings API
+  version: 0.1.0
+  description: The Anything API is the fastest way for agents to build and launch mobile and web apps.
+servers:
+- url: /
+tags:
+- name: Settings
+paths:
+  /v0/api/projects/{projectGroupId}/settings/auth:
+    get:
+      summary: Read project auth settings
+      description: Returns the current project auth provider state and whether each provider appears configured.
+      tags:
+      - Settings
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      responses:
+        '200':
+          description: Project auth settings
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  authEnabled:
+                    type: boolean
+                  providers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        provider:
+                          type: string
+                          enum:
+                          - google
+                          - email
+                          - facebook
+                          - twitter
+                          - apple
+                        enabled:
+                          type: boolean
+                        configured:
+                          type: boolean
+                        expectedSecretKeys:
+                          type: array
+                          items:
+                            type: string
+                        configuredSecretKeys:
+                          type: array
+                          items:
+                            type: string
+                        helpUrl:
+                          type: string
+                      required:
+                      - provider
+                      - enabled
+                      - configured
+                      - expectedSecretKeys
+                      - configuredSecretKeys
+                      - helpUrl
+                required:
+                - authEnabled
+                - providers
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+    post:
+      summary: Update project auth settings
+      description: Updates the enabled state for a project auth provider and optionally stores provider secrets.
+      tags:
+      - Settings
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                provider:
+                  type: string
+                  enum:
+                  - google
+                  - email
+                  - facebook
+                  - twitter
+                  - apple
+                enabled:
+                  type: boolean
+                secrets:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      displayName:
+                        type: string
+                        minLength: 1
+                      envKey:
+                        type: string
+                        minLength: 2
+                      value:
+                        type: string
+                        minLength: 1
+                      environment:
+                        type: string
+                        enum:
+                        - development
+                        - preview
+                        - production
+                    required:
+                    - displayName
+                    - envKey
+                    - value
+                    - environment
+                enableForAllModules:
+                  type: boolean
+              required:
+              - provider
+              - enabled
+      responses:
+        '200':
+          description: Updated project auth settings
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  authEnabled:
+                    type: boolean
+                  providers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        provider:
+                          type: string
+                          enum:
+                          - google
+                          - email
+                          - facebook
+                          - twitter
+                          - apple
+                        enabled:
+                          type: boolean
+                        configured:
+                          type: boolean
+                        expectedSecretKeys:
+                          type: array
+                          items:
+                            type: string
+                        configuredSecretKeys:
+                          type: array
+                          items:
+                            type: string
+                        helpUrl:
+                          type: string
+                      required:
+                      - provider
+                      - enabled
+                      - configured
+                      - expectedSecretKeys
+                      - configuredSecretKeys
+                      - helpUrl
+                required:
+                - authEnabled
+                - providers
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'Use your Anything API key as the Basic auth username and leave the password empty. Example credentials: anything_xxx:'

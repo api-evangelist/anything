@@ -1,0 +1,16 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Anything API
+  version: 1.0.0
+extends: openapi/anything-openapi-original.json
+actions:
+- target: $.info
+  update:
+    x-apievangelist-enriched: '2026-07-17'
+    x-apievangelist-notes: Auth is HTTP Basic with the Anything API key as username.
+      Offset pagination (limit<=100/offset). Custom JSON error envelope {error,details,message}.
+      No idempotency contract documented.
+- target: $.servers
+  update:
+  - url: https://api.anything.com
+    description: Production (base path /v0/api)

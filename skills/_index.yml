@@ -1,0 +1,19 @@
+generated: '2026-07-17'
+method: generated
+skills:
+- file: anything-create-and-launch-app.md
+  name: Create and launch an app
+  api: openapi/anything-openapi-original.json
+  operations:
+  - POST /v0/api/projects
+  - GET /v0/api/projects/{projectGroupId}/status
+  - POST /v0/api/projects/{projectGroupId}/generate
+  - POST /v0/api/projects/{projectGroupId}/publish
+- file: anything-provision-and-query-database.md
+  name: Provision and query a database
+  api: openapi/anything-openapi-original.json
+  operations:
+  - POST /v0/api/databases
+  - GET /v0/api/databases/{databaseId}
+  - POST /v0/api/databases/{databaseId}/query
+  - GET /v0/api/databases/{databaseId}/connection

@@ -1,0 +1,57 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/anything-openapi-original.json
+entities:
+- name: User
+- name: Organization
+- name: Project
+- name: Database
+- name: Domain
+- name: Deployment
+- name: Asset
+- name: Secret
+- name: Message
+- name: Submission
+relationships:
+- from: Organization
+  type: has_many
+  to: Project
+  via: organizationId
+- from: Organization
+  type: has_many
+  to: Domain
+  via: organizationId
+- from: Organization
+  type: has_many
+  to: User
+  via: members
+- from: Project
+  type: has_many
+  to: Deployment
+  via: projectGroupId
+- from: Project
+  type: has_many
+  to: Asset
+  via: projectGroupId
+- from: Project
+  type: has_many
+  to: Secret
+  via: projectGroupId
+- from: Project
+  type: has_many
+  to: Message
+  via: projectGroupId
+- from: Project
+  type: has_many
+  to: Submission
+  via: projectGroupId
+- from: Project
+  type: belongs_to
+  to: Organization
+  via: organizationId
+- from: Database
+  type: belongs_to
+  to: Organization
+  via: organizationId
+note: Derived from path structure and id path parameters; the OpenAPI declares no
+  components.schemas so entity fields are inline per-operation.

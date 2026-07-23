@@ -1,0 +1,135 @@
+openapi: 3.1.0
+info:
+  title: Anything Assets Files API
+  version: 0.1.0
+  description: The Anything API is the fastest way for agents to build and launch mobile and web apps.
+servers:
+- url: /
+tags:
+- name: Files
+paths:
+  /v0/api/projects/{projectGroupId}/files:
+    get:
+      summary: Read project files
+      description: Lists project files, or returns one file with content when `path` is provided.
+      tags:
+      - Files
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      - schema:
+          type: string
+          minLength: 1
+        required: false
+        name: path
+        in: query
+      responses:
+        '200':
+          description: Project files
+          content:
+            application/json:
+              schema:
+                anyOf:
+                - type: object
+                  properties:
+                    files:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          path:
+                            type: string
+                        required:
+                        - path
+                  required:
+                  - files
+                - type: object
+                  properties:
+                    file:
+                      type: object
+                      properties:
+                        path:
+                          type: string
+                        content:
+                          type: string
+                      required:
+                      - path
+                      - content
+                  required:
+                  - file
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: File not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'Use your Anything API key as the Basic auth username and leave the password empty. Example credentials: anything_xxx:'

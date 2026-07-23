@@ -1,0 +1,160 @@
+openapi: 3.1.0
+info:
+  title: Anything Assets Logs API
+  version: 0.1.0
+  description: The Anything API is the fastest way for agents to build and launch mobile and web apps.
+servers:
+- url: /
+tags:
+- name: Logs
+paths:
+  /v0/api/projects/{projectGroupId}/logs:
+    get:
+      summary: Read recent development logs
+      description: Returns recent development logs for a project, optionally filtered by level or message text.
+      tags:
+      - Logs
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      - schema:
+          type: string
+          enum:
+          - info
+          - warn
+          - error
+        required: false
+        name: level
+        in: query
+      - schema:
+          type: string
+        required: false
+        name: search
+        in: query
+      - schema:
+          type: integer
+          exclusiveMinimum: 0
+          maximum: 100
+        required: false
+        name: limit
+        in: query
+      responses:
+        '200':
+          description: Logs list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  logs:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        message:
+                          type: string
+                        level:
+                          type: string
+                          enum:
+                          - info
+                          - warn
+                          - error
+                        timestamp:
+                          type: string
+                          format: date-time
+                        source:
+                          type:
+                          - string
+                          - 'null'
+                        devServerId:
+                          type:
+                          - string
+                          - 'null'
+                      required:
+                      - id
+                      - message
+                      - level
+                      - timestamp
+                      - source
+                      - devServerId
+                required:
+                - logs
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'Use your Anything API key as the Basic auth username and leave the password empty. Example credentials: anything_xxx:'

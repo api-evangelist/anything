@@ -1,0 +1,43 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/anything-openapi-original.json
+format: custom-json-envelope
+envelope:
+  fields:
+  - error
+  - details
+  - message
+  required:
+  - error
+  note: Errors return application/json with an "error" code string, optional human
+    "message", and optional "details" array. Not RFC 9457 problem+json.
+problems:
+- status: 400
+  title: Invalid request
+  description: Invalid request
+  occurrences: 46
+- status: 401
+  title: Missing or invalid API key
+  description: Unauthorized
+  occurrences: 46
+- status: 403
+  title: Authenticated but not permitted
+  description: Forbidden
+  occurrences: 46
+- status: 404
+  title: Resource not found
+  description: "Not found \u2014 the referenced resource does not exist (including\
+    \ malformed resource IDs)"
+  occurrences: 46
+- status: 413
+  title: Payload too large
+  description: File too large
+  occurrences: 1
+- status: 500
+  title: Internal server error
+  description: Failed to start generation
+  occurrences: 3
+- status: 501
+  title: Not implemented
+  description: Not implemented
+  occurrences: 1

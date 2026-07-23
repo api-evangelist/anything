@@ -1,0 +1,18 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/anything-openapi-original.json + https://www.anything.com/docs
+versioning:
+  scheme: uri-path
+  current: v0
+  base_path: /v0/api
+  note: API version pinned in the path (/v0/). Info.version 0.1.0.
+deprecation:
+  policy_url: null
+  sunset_header: null
+  note: No deprecation/sunset policy located in docs or headers.
+status_page: null
+sla: null
+unimplemented_operations:
+- openapi/anything-openapi-original.json#POST /v0/api/projects/{projectGroupId}/deployments/rollback
+  (returns 501 Not Implemented)
+deprecated_operations: []

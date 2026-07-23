@@ -1,0 +1,154 @@
+openapi: 3.1.0
+info:
+  title: Anything Assets Messages API
+  version: 0.1.0
+  description: The Anything API is the fastest way for agents to build and launch mobile and web apps.
+servers:
+- url: /
+tags:
+- name: Messages
+paths:
+  /v0/api/projects/{projectGroupId}/messages:
+    get:
+      summary: Read messages
+      description: Returns chat messages for a project, optionally filtered by thread.
+      tags:
+      - Messages
+      security:
+      - basicAuth: []
+      parameters:
+      - schema:
+          type: string
+          format: uuid
+        required: true
+        name: projectGroupId
+        in: path
+      - schema:
+          type: string
+          format: uuid
+        required: false
+        name: threadId
+        in: query
+      - schema:
+          type: integer
+          exclusiveMinimum: 0
+          maximum: 100
+        required: false
+        name: limit
+        in: query
+      responses:
+        '200':
+          description: Messages list
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  messages:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          format: uuid
+                        userMessage:
+                          type:
+                          - string
+                          - 'null'
+                        assistantMessage:
+                          type:
+                          - string
+                          - 'null'
+                        action:
+                          type: string
+                        status:
+                          type: string
+                        threadId:
+                          type:
+                          - string
+                          - 'null'
+                          format: uuid
+                        createdAt:
+                          type: string
+                          format: date-time
+                      required:
+                      - id
+                      - userMessage
+                      - assistantMessage
+                      - action
+                      - status
+                      - threadId
+                      - createdAt
+                required:
+                - messages
+        '400':
+          description: Invalid request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '401':
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+        '404':
+          description: Not found — the referenced resource does not exist (including malformed resource IDs)
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                  details:
+                    type: array
+                    items: {}
+                  message:
+                    type: string
+                required:
+                - error
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: 'Use your Anything API key as the Basic auth username and leave the password empty. Example credentials: anything_xxx:'

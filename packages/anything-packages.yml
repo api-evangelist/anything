@@ -1,0 +1,12 @@
+generated: '2026-07-17'
+method: searched
+packages:
+- language: javascript
+  registry: npm
+  name: '@anythingai/cli'
+  url: https://www.npmjs.com/package/@anythingai/cli
+  install: npm install -g @anythingai/cli
+  binary: anything
+  kind: cli
+  official: true
+  version: 1.0.0

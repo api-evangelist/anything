@@ -1,0 +1,40 @@
+{
+  "provider": "anything",
+  "sources": [
+    "anything-assets-api-openapi.yml",
+    "anything-databases-api-openapi.yml",
+    "anything-deployments-api-openapi.yml",
+    "anything-domains-api-openapi.yml",
+    "anything-files-api-openapi.yml",
+    "anything-generation-api-openapi.yml",
+    "anything-logs-api-openapi.yml",
+    "anything-messages-api-openapi.yml",
+    "anything-mobile-api-openapi.yml",
+    "anything-organizations-api-openapi.yml",
+    "anything-projects-api-openapi.yml",
+    "anything-secrets-api-openapi.yml",
+    "anything-settings-api-openapi.yml",
+    "anything-user-api-openapi.yml"
+  ],
+  "outputs": [
+    "anything-assets-api-openapi.yml",
+    "anything-databases-api-openapi.yml",
+    "anything-deployments-api-openapi.yml",
+    "anything-domains-api-openapi.yml",
+    "anything-files-api-openapi.yml",
+    "anything-generation-api-openapi.yml",
+    "anything-logs-api-openapi.yml",
+    "anything-messages-api-openapi.yml",
+    "anything-mobile-api-openapi.yml",
+    "anything-organizations-api-openapi.yml",
+    "anything-projects-api-openapi.yml",
+    "anything-secrets-api-openapi.yml",
+    "anything-settings-api-openapi.yml",
+    "anything-user-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

@@ -1,0 +1,23 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/anything-openapi-original.json
+standards:
+- id: oauth2
+  conforms: false
+  evidence: no oauth2 securityScheme; auth is http basic
+- id: oidc
+  conforms: false
+- id: http-basic-auth
+  conforms: true
+  evidence: components.securitySchemes.basicAuth type http scheme basic
+- id: rfc9457-problem-details
+  conforms: false
+  evidence: errors use a custom {error,details,message} envelope, not application/problem+json
+- id: json-api
+  conforms: false
+- id: openapi-3.1
+  conforms: true
+  evidence: 'openapi: 3.1.0'
+- id: pagination-limit-offset
+  conforms: true
+  evidence: limit/offset query params on list operations

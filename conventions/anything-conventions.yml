@@ -1,0 +1,40 @@
+generated: '2026-07-17'
+method: derived
+source: openapi/anything-openapi-original.json
+authentication:
+  style: http-basic
+  detail: API key as Basic-auth username, empty password (anything_xxx:)
+  ref: authentication/anything-authentication.yml
+versioning:
+  scheme: uri-path
+  current: v0
+  base_path: /v0/api
+pagination:
+  style: offset
+  params:
+  - limit
+  - offset
+  limit_max: 100
+  note: List endpoints accept limit (1-100) and offset; some accept search/query filters.
+filtering:
+  params:
+  - query
+  - search
+  - level
+  - threadId
+idempotency:
+  supported: false
+  note: No Idempotency-Key header or parameter is documented in the OpenAPI.
+errors:
+  envelope: custom-json
+  ref: errors/anything-problem-types.yml
+rate_limiting:
+  documented: false
+  observed: HTTP 429 returned by the marketing/docs host under load; API rate-limit
+    headers not documented.
+media_types:
+  request:
+  - application/json
+  - multipart/form-data
+  response:
+  - application/json

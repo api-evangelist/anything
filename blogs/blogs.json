@@ -1,0 +1,14 @@
+{
+  "repo": "anything",
+  "feeds": [
+    {
+      "source": "https://www.anything.com/docs/share/community",
+      "feed_url": "https://www.anything.com/docs/share/community",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-07-20T13:31:34Z"
+}

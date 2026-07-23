@@ -1,0 +1,175 @@
+# Anything
+
+## Docs
+
+- [Credits](https://www.anything.com/docs/account/credits.md): How credits work and how to manage them
+- [Profile](https://www.anything.com/docs/account/profile.md): Your Anything handle
+- [Subscriptions](https://www.anything.com/docs/account/subscriptions.md): Plans, pricing, and billing for Anything
+- [Ads](https://www.anything.com/docs/ads.md): Monetize your apps with Google AdMob (mobile) and AdSense (web)
+- [Delete an asset](https://www.anything.com/docs/api-reference/assets/delete-an-asset.md): Removes an asset from a project group.
+- [List assets](https://www.anything.com/docs/api-reference/assets/list-assets.md): Returns the image assets uploaded to a project group, optionally filtered by a search query and paginated.
+- [Upload an asset](https://www.anything.com/docs/api-reference/assets/upload-an-asset.md): Uploads an image asset to a project group. Send the file as multipart/form-data under the `file` field, with an optional display `name`.
+- [Create a database](https://www.anything.com/docs/api-reference/databases/create-a-database.md): Creates a new user database. The database is provisioned asynchronously — poll GET /databases/{databaseId} until the status leaves CREATING.
+- [Delete a database](https://www.anything.com/docs/api-reference/databases/delete-a-database.md): Soft-deletes a user database and schedules permanent removal of the underlying infrastructure after a 30-day grace period.
+- [Get a single database](https://www.anything.com/docs/api-reference/databases/get-a-single-database.md): Returns details for a specific user database.
+- [Get database connection string](https://www.anything.com/docs/api-reference/databases/get-database-connection-string.md): Returns the connection string for a user database.
+- [List accessible databases](https://www.anything.com/docs/api-reference/databases/list-accessible-databases.md): Returns databases in an organization that the authenticated user can access.
+- [Query a database](https://www.anything.com/docs/api-reference/databases/query-a-database.md): Executes a read-only SQL query against the database. Only SELECT, WITH, EXPLAIN, and SHOW statements are allowed.
+- [Reset development database](https://www.anything.com/docs/api-reference/databases/reset-development-database.md): Resets the development branch of a user database.
+- [Get deployment logs](https://www.anything.com/docs/api-reference/deployments/get-deployment-logs.md): Returns the build logs for a specific deployment.
+- [Get deployment status](https://www.anything.com/docs/api-reference/deployments/get-deployment-status.md): Returns the current state of a deployment, including build logs if available.
+- [List project deployments](https://www.anything.com/docs/api-reference/deployments/list-project-deployments.md): Returns recent deployments for a project group, ordered by creation time descending.
+- [Rollback a deployment](https://www.anything.com/docs/api-reference/deployments/rollback-a-deployment.md): Deployment rollback is not yet implemented.
+- [Add a domain](https://www.anything.com/docs/api-reference/domains/add-a-domain.md): Adds a custom domain to an organization, optionally linked to a project group.
+- [List organization domains](https://www.anything.com/docs/api-reference/domains/list-organization-domains.md): Returns the apex domains for an organization, including verification status and linked project information.
+- [Remove a domain](https://www.anything.com/docs/api-reference/domains/remove-a-domain.md): Removes a custom domain.
+- [Verify a domain](https://www.anything.com/docs/api-reference/domains/verify-a-domain.md): Triggers verification for a custom domain.
+- [Read project files](https://www.anything.com/docs/api-reference/files/read-project-files.md): Lists project files, or returns one file with content when `path` is provided.
+- [Request a change](https://www.anything.com/docs/api-reference/generation/request-a-change.md): Sends a prompt to generate changes in an existing project. Optionally creates or continues a conversation thread.
+- [Read recent development logs](https://www.anything.com/docs/api-reference/logs/read-recent-development-logs.md): Returns recent development logs for a project, optionally filtered by level or message text.
+- [Read messages](https://www.anything.com/docs/api-reference/messages/read-messages.md): Returns chat messages for a project, optionally filtered by thread.
+- [Get Play Store setup details](https://www.anything.com/docs/api-reference/mobile/get-play-store-setup-details.md): Returns the package name to register and the service account email to invite in Google Play Console before starting a Play Store submission.
+- [Read submission status](https://www.anything.com/docs/api-reference/mobile/read-submission-status.md): Returns the current state of an Expo launch session for a project.
+- [Start an App Store submission](https://www.anything.com/docs/api-reference/mobile/start-an-app-store-submission.md): Starts the Expo launch flow for an app store submission. Returns the session so clients can poll for launch URL readiness.
+- [Invite a member](https://www.anything.com/docs/api-reference/organizations/invite-a-member.md): Sends an invitation to join the organization. Requires OWNER or ADMIN role.
+- [List organization members](https://www.anything.com/docs/api-reference/organizations/list-organization-members.md): Returns collaborators and pending invites for an organization the authenticated user can access.
+- [Remove a member](https://www.anything.com/docs/api-reference/organizations/remove-a-member.md): Removes a member from the organization. Requires OWNER or ADMIN role.
+- [Update member role](https://www.anything.com/docs/api-reference/organizations/update-member-role.md): Changes the role of an organization member. Requires OWNER or ADMIN role.
+- [Create a new project](https://www.anything.com/docs/api-reference/projects/create-a-new-project.md): Creates a new project and starts initial generation from a prompt.
+- [Delete a project](https://www.anything.com/docs/api-reference/projects/delete-a-project.md): Marks a project group for deletion and schedules permanent cleanup.
+- [Duplicate a project](https://www.anything.com/docs/api-reference/projects/duplicate-a-project.md): Duplicates an existing project group into the same organization and returns the new project group ID.
+- [Get project info](https://www.anything.com/docs/api-reference/projects/get-project-info.md): Returns project group details including modules and dev server status.
+- [Inspect auth provider configuration](https://www.anything.com/docs/api-reference/projects/inspect-auth-provider-configuration.md): Returns the auth providers configured for a project group, including the secret metadata used by the Authentication settings UI.
+- [List accessible projects](https://www.anything.com/docs/api-reference/projects/list-accessible-projects.md): Returns project groups the authenticated user can access, optionally filtered by organization or search query.
+- [Publish project](https://www.anything.com/docs/api-reference/projects/publish-project.md): Publishes the project, making it publicly accessible. Optionally claims a custom slug.
+- [Read project status](https://www.anything.com/docs/api-reference/projects/read-project-status.md): Returns a small status document (latest revision status + deployment summary) for cheap polling. Avoids the message body payload.
+- [Rename a project group](https://www.anything.com/docs/api-reference/projects/rename-a-project-group.md): Renames a project group the authenticated user can access and returns the updated metadata.
+- [Restore a deleted project](https://www.anything.com/docs/api-reference/projects/restore-a-deleted-project.md): Restores a project group that has been marked for deletion and cancels its pending cleanup job.
+- [Unpublish project](https://www.anything.com/docs/api-reference/projects/unpublish-project.md): Removes the published app for a project group without deleting the project group itself.
+- [Add secrets](https://www.anything.com/docs/api-reference/secrets/add-secrets.md): Adds one or more secrets to a project. Send a single secret object or a bulk array.
+- [Delete a secret](https://www.anything.com/docs/api-reference/secrets/delete-a-secret.md): Removes a secret from the project.
+- [List secrets](https://www.anything.com/docs/api-reference/secrets/list-secrets.md): Returns the configured secrets for a project without exposing plaintext values.
+- [Read project auth settings](https://www.anything.com/docs/api-reference/settings/read-project-auth-settings.md): Returns the current project auth provider state and whether each provider appears configured.
+- [Update project auth settings](https://www.anything.com/docs/api-reference/settings/update-project-auth-settings.md): Updates the enabled state for a project auth provider and optionally stores provider secrets.
+- [Get current user info](https://www.anything.com/docs/api-reference/user/get-current-user-info.md): Returns the authenticated user and their organizations, including plan and credit context.
+- [Auth](https://www.anything.com/docs/apps/auth.md): Add sign up, login, and user accounts to your app
+- [Backend](https://www.anything.com/docs/apps/backend.md): Every Anything app ships with a backend. Functions, API routes, and cloud logic — no setup required.
+- [Databases](https://www.anything.com/docs/apps/databases.md): Built-in PostgreSQL database for every Anything project
+- [Design](https://www.anything.com/docs/apps/design.md): Apps that look good out of the box. No design experience needed.
+- [Integrations](https://www.anything.com/docs/apps/integrations.md): AI and 100+ built in
+- [Mobile](https://www.anything.com/docs/apps/mobile.md): Build iOS and Android apps and submit to app stores
+- [Device capabilities](https://www.anything.com/docs/apps/mobile/device-capabilities.md): Use device features like camera, location, and sensors in your mobile apps
+- [Getting Started with Mobile Apps](https://www.anything.com/docs/apps/mobile/getting-started.md): Your first app, on your phone
+- [Submit to Play Store](https://www.anything.com/docs/apps/mobile/publishing-android.md): Submit your Android app to Google Play from Anything
+- [Capture TestFlight logs](https://www.anything.com/docs/apps/mobile/testflight-logs.md): Pull crash logs and system logs from a TestFlight build
+- [Testing](https://www.anything.com/docs/apps/mobile/testing.md): Try it on your phone before you ship
+- [Verify Apple developer account](https://www.anything.com/docs/apps/mobile/verify-apple-developer-account.md): Make sure your Apple account is ready
+- [Overview](https://www.anything.com/docs/apps/overview.md): Your app broken down
+- [Templates](https://www.anything.com/docs/apps/templates.md): Start from something that already works
+- [Uploads](https://www.anything.com/docs/apps/uploads.md): Let users upload files to your app. Images, documents, audio, video.
+- [Web](https://www.anything.com/docs/apps/web.md): Build and launch web apps and websites with Anything
+- [Facebook Login](https://www.anything.com/docs/auth/facebook.md): Let users login to your app with their Facebook accounts
+- [Google Sign In](https://www.anything.com/docs/auth/google.md): Let users sign in to your app with their Google account
+- [Login with X (Twitter)](https://www.anything.com/docs/auth/x.md): Let users sign in to your app with their X/Twitter account
+- [Agent](https://www.anything.com/docs/builder/agent.md): How the Anything AI agent builds your app
+- [CLI](https://www.anything.com/docs/builder/cli.md): Build, iterate on, and manage Anything apps from your terminal
+- [Controls](https://www.anything.com/docs/builder/controls.md): A tour of the Anything builder interface
+- [Expo Go](https://www.anything.com/docs/builder/ios-app.md): Preview mobile apps from your phone with Expo Go.
+- [Max](https://www.anything.com/docs/builder/max.md): Give it a goal. It builds, tests in a real browser, and fixes until it's done.
+- [Upgrade to v2](https://www.anything.com/docs/builder/upgrade-to-v2.md): Move a project to Anything's new project architecture
+- [Anything API & CLI (for agents)](https://www.anything.com/docs/cli.md): Let your agent build and launch mobile & web apps
+- [Essentials](https://www.anything.com/docs/essentials.md): Learn how Anything works and what you can build
+- [FAQ](https://www.anything.com/docs/faq.md): Quick answers to common questions about Anything
+- [Build your first app](https://www.anything.com/docs/first-app.md): From idea to working app in one conversation
+- [Figma](https://www.anything.com/docs/import/figma.md): Turn Figma designs into working apps
+- [Mobbin](https://www.anything.com/docs/import/mobbin.md): Reference real app screens from Mobbin
+- [Mocha](https://www.anything.com/docs/import/mocha.md): Bring your Mocha projects to Anything
+- [Sleek](https://www.anything.com/docs/import/sleek.md): Go from Sleek mockup to working app
+- [Airtable](https://www.anything.com/docs/integrations/airtable.md): Integrate and manage your data with Airtable
+- [Alpha Vantage](https://www.anything.com/docs/integrations/alpha-vantage.md): Access financial market data and stock information
+- [Replicate Background Remover](https://www.anything.com/docs/integrations/background-remover.md): Remove backgrounds from images instantly using Replicate's AI model
+- [Beer & Brewery Data](https://www.anything.com/docs/integrations/beerapi.md): Access comprehensive beer and brewery data
+- [Brandfetch](https://www.anything.com/docs/integrations/brandfetch.md): Access company logos and brand assets
+- [Currents](https://www.anything.com/docs/integrations/currents.md): Access current news and headlines
+- [Discord](https://www.anything.com/docs/integrations/discord.md): Integrate Discord messaging capabilities into your application
+- [ElevenLabs](https://www.anything.com/docs/integrations/elevenlabs.md): Add AI-powered voice generation and text-to-speech
+- [Exa](https://www.anything.com/docs/integrations/exa.md): Crawl the internet with AI-powered search
+- [FindWork](https://www.anything.com/docs/integrations/findwork.md): Access job listings and freelance opportunities
+- [Firecrawl](https://www.anything.com/docs/integrations/firecrawl.md): Web scraping and data extraction API
+- [Flux](https://www.anything.com/docs/integrations/flux.md): Generate images with Replicate's Flux model
+- [Freesound](https://www.anything.com/docs/integrations/freesound.md): Access a vast library of audio samples
+- [GIPHY](https://www.anything.com/docs/integrations/giphy.md): Access GIFs and animated content
+- [Google Imagen](https://www.anything.com/docs/integrations/google-imagen.md): Generate images with Google's Imagen model through Replicate's AI Models Database
+- [HackerEarth](https://www.anything.com/docs/integrations/hackerearth.md): Access coding challenges and assessment tools
+- [Hashtag Research](https://www.anything.com/docs/integrations/hashtagapi.md): Access trending hashtag data and analytics
+- [HeyGen](https://www.anything.com/docs/integrations/heygen.md): Create AI-powered video content
+- [Hugging Face](https://www.anything.com/docs/integrations/huggingface.md): Access AI models and datasets
+- [Ideogram](https://www.anything.com/docs/integrations/ideogram.md): Generate AI art and illustrations
+- [iLovePDF](https://www.anything.com/docs/integrations/ilovepdf.md): Integrate iLovePDF capabilities into your application
+- [IPstack](https://www.anything.com/docs/integrations/ipstack.md): Access IP geolocation data
+- [Judge0 CE](https://www.anything.com/docs/integrations/judgece.md): Execute code in various programming languages
+- [Ko-fi Webhook](https://www.anything.com/docs/integrations/kofi.md): Set up webhooks to receive notifications from Ko-fi
+- [Levels IO](https://www.anything.com/docs/integrations/levelsio.md): Utilize Levels IO's disposable camera AI model via Replicate's AI model database
+- [LINE](https://www.anything.com/docs/integrations/line.md): Integrate LINE messaging capabilities into your application
+- [LogMeal](https://www.anything.com/docs/integrations/logmeal.md): Analyze food images with AI
+- [Luma](https://www.anything.com/docs/integrations/luma.md): Add calendar and event management
+- [Minimax](https://www.anything.com/docs/integrations/minimax.md): Integrate Minimax video generation capabilities using Replicate's AI Model Database into your application
+- [TMDB - The Movie Database](https://www.anything.com/docs/integrations/moviesdb.md): Access comprehensive movie and TV show data
+- [NeverBounce](https://www.anything.com/docs/integrations/neverbounce.md): Verify email addresses in real-time
+- [News & Headlines](https://www.anything.com/docs/integrations/newsapi.md): Access global news articles and headlines
+- [Nutritionix](https://www.anything.com/docs/integrations/nutritionix.md): Access nutrition data and food information
+- [New York Times](https://www.anything.com/docs/integrations/nytimes.md): Access articles, reviews, and data from The New York Times
+- [OpenLibrary](https://www.anything.com/docs/integrations/openlibrary.md): Access books and library data
+- [Perplexity](https://www.anything.com/docs/integrations/perplexity.md): Access AI-powered question answering and research
+- [Petfinder](https://www.anything.com/docs/integrations/petfinder.md): Access pet adoption data and information
+- [Pexels](https://www.anything.com/docs/integrations/pexels.md): Add beautiful stock photos
+- [Pixabay](https://www.anything.com/docs/integrations/pixabay.md): Access high-quality images and videos from Pixabay
+- [PokéAPI](https://www.anything.com/docs/integrations/pokeapi.md): Access Pokémon data and information
+- [Polygon.io](https://www.anything.com/docs/integrations/polygonio.md): Access financial market data and stock information
+- [Rentcast](https://www.anything.com/docs/integrations/rentcast.md): Access real estate and rental market data
+- [Replicate Flux](https://www.anything.com/docs/integrations/replicate-flux.md): Generate images with Replicate's Flux or Flux Pro model
+- [Resend](https://www.anything.com/docs/integrations/resend.md): Add email sending capabilities to your application
+- [Rundown](https://www.anything.com/docs/integrations/rundown.md): Access sports data and statistics
+- [Screenshot Layer](https://www.anything.com/docs/integrations/screenshot-layer.md): Capture screenshots of any website
+- [SFMTA](https://www.anything.com/docs/integrations/sfmta.md): Access San Francisco transit data
+- [Slack](https://www.anything.com/docs/integrations/slack.md): Integrate Slack messaging capabilities into your application
+- [Spotify](https://www.anything.com/docs/integrations/spotify.md): Access music, playlists, and user data
+- [Tavus](https://www.anything.com/docs/integrations/tavus.md): Create personalized AI video content
+- [Tenor](https://www.anything.com/docs/integrations/tenor.md): Access GIFs and animated content
+- [Ticketmaster](https://www.anything.com/docs/integrations/ticketmaster.md): Access events and venue data
+- [TikTok Scraper](https://www.anything.com/docs/integrations/tiktok-scraper.md): Access TikTok content and data
+- [TripAdvisor](https://www.anything.com/docs/integrations/tripadvisor.md): Access travel information and reviews
+- [UPC Database](https://www.anything.com/docs/integrations/upcdb.md): Access product information through UPC barcodes
+- [URL Shortener](https://www.anything.com/docs/integrations/urlshortener.md): Create and manage shortened URLs
+- [USA Jobs](https://www.anything.com/docs/integrations/usajobs.md): Access federal job listings and employment data
+- [Veriphone](https://www.anything.com/docs/integrations/veriphone.md): Validate and verify phone numbers globally
+- [Weather](https://www.anything.com/docs/integrations/weather.md): Access real-time weather data and forecasts
+- [Word Cloud](https://www.anything.com/docs/integrations/wordcloud.md): Generate visual word clouds from text data
+- [Yelp](https://www.anything.com/docs/integrations/yelp.md): Access business data and reviews
+- [Analytics](https://www.anything.com/docs/launch/analytics.md): See visitors, traffic sources, and revenue for your published app
+- [Submit to App Store](https://www.anything.com/docs/launch/app-store.md): Get your mobile app live on the Apple App Store using TestFlight
+- [Branding & SEO](https://www.anything.com/docs/launch/branding-seo.md): Names, icons, and how your app looks in search and on social
+- [Set up a domain email address](https://www.anything.com/docs/launch/domain-email.md): Send and receive email at your own domain, like hello@yourdomain.com
+- [Domains](https://www.anything.com/docs/launch/domains.md): Get your app on its own URL
+- [Publish](https://www.anything.com/docs/launch/publish.md): Take your web app live or submit your mobile app to app stores
+- [RevenueCat](https://www.anything.com/docs/payments/revenuecat.md): Add subscriptions and in-app purchases to your iOS app
+- [Stripe](https://www.anything.com/docs/payments/stripe.md): Add Stripe payments to your web app
+- [Prompting](https://www.anything.com/docs/prompting.md): How to talk to Anything so it builds what you want
+- [APIs & Integrations](https://www.anything.com/docs/quick-tips/external-apis.md): Connect your app to any external API by describing what you need. Use Saved Secrets for keys and backend functions to call third-party services.
+- [Format markdown](https://www.anything.com/docs/quick-tips/format-markdown.md): Display formatted AI content with the Markdown Renderer
+- [Community](https://www.anything.com/docs/share/community.md): Connect with other builders, get help, and stay in the loop.
+- [Embed an iframe](https://www.anything.com/docs/share/embed.md): Add your Anything app to any website using iframes
+- [Export](https://www.anything.com/docs/share/export.md): Download your code and take it anywhere
+- [Invite your team](https://www.anything.com/docs/share/teams.md): Work with others on your app in real time
+- [Get help](https://www.anything.com/docs/support/help.md): Get help from the community and the Anything team
+- [Experts](https://www.anything.com/docs/support/product-experts.md): Get one-on-one help from experienced Anything builders
+- [Test auth](https://www.anything.com/docs/test-auth.md)
+- [Welcome](https://www.anything.com/docs/welcome.md): Everything you need to make money on the internet
+
+## OpenAPI Specs
+
+- [openapi](https://api.anything.com/v0/api/openapi.json)
+
+## Optional
+
+- [Product updates](https://x.com/anything)
