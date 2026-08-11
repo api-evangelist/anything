@@ -266,7 +266,7 @@ common:
 - type: PrivacyPolicy
   url: https://www.anything.com/privacy-policy
 - type: OpenAPI
-  url: openapi/anything-openapi-original.json
+  url: openapi/_original/anything-openapi-original.json
 - type: LLMsTxt
   url: llms/anything-llms.txt
 - type: Authentication
