@@ -1,0 +1,51 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Anything Assets Messages API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Read messages",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/projects/:projectGroupId/messages",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "threadId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns chat messages for a project, optionally filtered by thread."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

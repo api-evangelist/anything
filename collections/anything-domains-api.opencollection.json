@@ -1,0 +1,107 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Anything Assets Domains API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Domains",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List organization domains",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/domains",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the apex domains for an organization, including verification status and linked project information."
+        },
+        {
+          "info": {
+            "name": "Add a domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v0/api/domains",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Adds a custom domain to an organization, optionally linked to a project group."
+        },
+        {
+          "info": {
+            "name": "Remove a domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v0/api/domains/:domainId",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Removes a custom domain."
+        },
+        {
+          "info": {
+            "name": "Verify a domain",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v0/api/domains/:domainId/verify",
+            "params": [
+              {
+                "name": "domainId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Triggers verification for a custom domain."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

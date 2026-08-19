@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Anything Assets Files API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Files",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Read project files",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/projects/:projectGroupId/files",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "path",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Lists project files, or returns one file with content when `path` is provided."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,290 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Anything Assets Projects API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List accessible projects",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/projects",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns project groups the authenticated user can access, optionally filtered by organization or search query."
+        },
+        {
+          "info": {
+            "name": "Create a new project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v0/api/projects",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates a new project and starts initial generation from a prompt."
+        },
+        {
+          "info": {
+            "name": "Duplicate a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v0/api/projects/:projectGroupId/duplicate",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Duplicates an existing project group into the same organization and returns the new project group ID."
+        },
+        {
+          "info": {
+            "name": "Get project info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/projects/:projectGroupId",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns project group details including modules and dev server status."
+        },
+        {
+          "info": {
+            "name": "Delete a project",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v0/api/projects/:projectGroupId",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Marks a project group for deletion and schedules permanent cleanup."
+        },
+        {
+          "info": {
+            "name": "Inspect auth provider configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/projects/:projectGroupId/auth/providers",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the auth providers configured for a project group, including the secret metadata used by the Authentication settings UI."
+        },
+        {
+          "info": {
+            "name": "Rename a project group",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v0/api/projects/:projectGroupId/rename",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Renames a project group the authenticated user can access and returns the updated metadata."
+        },
+        {
+          "info": {
+            "name": "Read project status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/projects/:projectGroupId/status",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns a small status document (latest revision status + deployment summary) for cheap polling. Avoids the message body payload."
+        },
+        {
+          "info": {
+            "name": "Restore a deleted project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v0/api/projects/:projectGroupId/restore",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Restores a project group that has been marked for deletion and cancels its pending cleanup job."
+        },
+        {
+          "info": {
+            "name": "Publish project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v0/api/projects/:projectGroupId/publish",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Publishes the project, making it publicly accessible. Optionally claims a custom slug."
+        },
+        {
+          "info": {
+            "name": "Unpublish project",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v0/api/projects/:projectGroupId/unpublish",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Removes the published app for a project group without deleting the project group itself."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

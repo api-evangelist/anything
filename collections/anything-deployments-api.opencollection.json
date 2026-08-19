@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Anything Assets Deployments API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Deployments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List project deployments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/projects/:projectGroupId/deployments",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns recent deployments for a project group, ordered by creation time descending."
+        },
+        {
+          "info": {
+            "name": "Get deployment status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/deployments/:deploymentId",
+            "params": [
+              {
+                "name": "deploymentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the current state of a deployment, including build logs if available."
+        },
+        {
+          "info": {
+            "name": "Get deployment logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/deployments/:deploymentId/logs",
+            "params": [
+              {
+                "name": "deploymentId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the build logs for a specific deployment."
+        },
+        {
+          "info": {
+            "name": "Rollback a deployment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v0/api/projects/:projectGroupId/deployments/rollback",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Deployment rollback is not yet implemented."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

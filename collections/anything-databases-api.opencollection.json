@@ -1,0 +1,185 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Anything Assets Databases API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Databases",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List accessible databases",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/databases",
+            "params": [
+              {
+                "name": "organizationId",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns databases in an organization that the authenticated user can access."
+        },
+        {
+          "info": {
+            "name": "Create a database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v0/api/databases",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Creates a new user database. The database is provisioned asynchronously — poll GET /databases/{databaseId} until the status leaves CREATING."
+        },
+        {
+          "info": {
+            "name": "Get a single database",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/databases/:databaseId",
+            "params": [
+              {
+                "name": "databaseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns details for a specific user database."
+        },
+        {
+          "info": {
+            "name": "Delete a database",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "/v0/api/databases/:databaseId",
+            "params": [
+              {
+                "name": "databaseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Soft-deletes a user database and schedules permanent removal of the underlying infrastructure after a 30-day grace period."
+        },
+        {
+          "info": {
+            "name": "Query a database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v0/api/databases/:databaseId/query",
+            "params": [
+              {
+                "name": "databaseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Executes a read-only SQL query against the database. Only SELECT, WITH, EXPLAIN, and SHOW statements are allowed."
+        },
+        {
+          "info": {
+            "name": "Get database connection string",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/databases/:databaseId/connection",
+            "params": [
+              {
+                "name": "databaseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the connection string for a user database."
+        },
+        {
+          "info": {
+            "name": "Reset development database",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v0/api/databases/:databaseId/reset",
+            "params": [
+              {
+                "name": "databaseId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Resets the development branch of a user database."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

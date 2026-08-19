@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Anything Assets Mobile API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Mobile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start an App Store submission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "/v0/api/projects/:projectGroupId/submit",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            },
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Starts the Expo launch flow for an app store submission. Returns the session so clients can poll for launch URL readiness."
+        },
+        {
+          "info": {
+            "name": "Read submission status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/projects/:projectGroupId/submit/:submissionId",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "submissionId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the current state of an Expo launch session for a project."
+        },
+        {
+          "info": {
+            "name": "Get Play Store setup details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/projects/:projectGroupId/play-store-setup",
+            "params": [
+              {
+                "name": "projectGroupId",
+                "value": "",
+                "type": "path"
+              }
+            ],
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the package name to register and the service account email to invite in Google Play Console before starting a Play Store submission."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

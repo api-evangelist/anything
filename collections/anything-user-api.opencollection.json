@@ -1,0 +1,34 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Anything Assets User API",
+    "version": "0.1.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "User",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current user info",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "/v0/api/me",
+            "auth": {
+              "type": "basic",
+              "username": "{{username}}",
+              "password": "{{password}}"
+            }
+          },
+          "docs": "Returns the authenticated user and their organizations, including plan and credit context."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
