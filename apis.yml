@@ -35,6 +35,15 @@ tags:
 - Company
 - Ai Ml
 - App Builder
+- Low-Code
+- No-Code
+- Developer Tools
+- AI Agents
+- Mobile
+tags_raw:
+- Company
+- Ai Ml
+- App Builder
 - Low Code
 - No Code
 - Developer Tools
@@ -75,6 +84,8 @@ apis:
   humanURL: https://www.anything.com/docs/api-reference
   baseURL: https://api.anything.com/v0/api
   tags:
+  - Deployment
+  tags_raw:
   - Deployments
   properties:
   - type: OpenAPI
@@ -103,6 +114,8 @@ apis:
   humanURL: https://www.anything.com/docs/api-reference
   baseURL: https://api.anything.com/v0/api
   tags:
+  - File
+  tags_raw:
   - Files
   properties:
   - type: OpenAPI
@@ -145,6 +158,8 @@ apis:
   humanURL: https://www.anything.com/docs/api-reference
   baseURL: https://api.anything.com/v0/api
   tags:
+  - Message
+  tags_raw:
   - Messages
   properties:
   - type: OpenAPI
@@ -173,6 +188,8 @@ apis:
   humanURL: https://www.anything.com/docs/api-reference
   baseURL: https://api.anything.com/v0/api
   tags:
+  - Organization
+  tags_raw:
   - Organizations
   properties:
   - type: OpenAPI
@@ -187,6 +204,8 @@ apis:
   humanURL: https://www.anything.com/docs/api-reference
   baseURL: https://api.anything.com/v0/api
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
