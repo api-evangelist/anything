@@ -8,6 +8,18 @@ description: 'Anything is an AI-powered app builder that turns natural-language 
   web apps, and submit mobile apps to the App Store and Play Store. Backed by Bessemer
   Venture Partners and Uncork Capital.'
 url: https://raw.githubusercontent.com/api-evangelist/anything/refs/heads/main/apis.yml
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: false
+  label: Hosted service · you call their endpoint
+  confidence: medium
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: unknown
   onboarding: self-serve
