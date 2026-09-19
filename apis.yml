@@ -83,6 +83,8 @@ apis:
   humanURL: https://www.anything.com/docs/api-reference
   baseURL: https://api.anything.com/v0/api
   tags:
+  - Database
+  tags_raw:
   - Databases
   properties:
   - type: OpenAPI
