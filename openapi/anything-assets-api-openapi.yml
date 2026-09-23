@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: Anything Assets API
   version: 0.1.0
@@ -143,6 +143,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: postV0ApiProjectsByProjectGroupIdAssets
+      x-operation-id-source: derived
     get:
       summary: List assets
       description: Returns the image assets uploaded to a project group, optionally filtered by a search query and paginated.
@@ -277,6 +279,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: getV0ApiProjectsByProjectGroupIdAssets
+      x-operation-id-source: derived
   /v0/api/projects/{projectGroupId}/assets/{assetId}:
     delete:
       summary: Delete an asset
@@ -365,6 +369,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: deleteV0ApiProjectsByProjectGroupIdAssetsByAssetId
+      x-operation-id-source: derived
 components:
   securitySchemes:
     basicAuth:

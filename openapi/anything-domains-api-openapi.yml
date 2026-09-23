@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Anything Assets Domains API
+  title: Anything Domains API
   version: 0.1.0
   description: The Anything API is the fastest way for agents to build and launch mobile and web apps.
 servers:
@@ -128,6 +128,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: getV0ApiDomains
+      x-operation-id-source: derived
     post:
       summary: Add a domain
       description: Adds a custom domain to an organization, optionally linked to a project group.
@@ -258,6 +260,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: postV0ApiDomains
+      x-operation-id-source: derived
   /v0/api/domains/{domainId}:
     delete:
       summary: Remove a domain
@@ -340,6 +344,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: deleteV0ApiDomainsByDomainId
+      x-operation-id-source: derived
   /v0/api/domains/{domainId}/verify:
     post:
       summary: Verify a domain
@@ -435,6 +441,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: postV0ApiDomainsByDomainIdVerify
+      x-operation-id-source: derived
 components:
   securitySchemes:
     basicAuth:

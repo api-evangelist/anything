@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Anything Assets Organizations API
+  title: Anything Organizations API
   version: 0.1.0
   description: The Anything API is the fastest way for agents to build and launch mobile and web apps.
 servers:
@@ -162,6 +162,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: getV0ApiOrganizationsByOrganizationIdMembers
+      x-operation-id-source: derived
   /v0/api/organizations/{organizationId}/invites:
     post:
       summary: Invite a member
@@ -284,6 +286,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: postV0ApiOrganizationsByOrganizationIdInvites
+      x-operation-id-source: derived
   /v0/api/organizations/{organizationId}/members/remove:
     post:
       summary: Remove a member
@@ -386,6 +390,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: postV0ApiOrganizationsByOrganizationIdMembersRemove
+      x-operation-id-source: derived
   /v0/api/organizations/{organizationId}/members/role:
     post:
       summary: Update member role
@@ -503,6 +509,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: postV0ApiOrganizationsByOrganizationIdMembersRole
+      x-operation-id-source: derived
 components:
   securitySchemes:
     basicAuth:

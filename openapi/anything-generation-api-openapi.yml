@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Anything Assets Generation API
+  title: Anything Generation API
   version: 0.1.0
   description: The Anything API is the fastest way for agents to build and launch mobile and web apps.
 servers:
@@ -140,6 +140,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: postV0ApiProjectsByProjectGroupIdGenerate
+      x-operation-id-source: derived
 components:
   securitySchemes:
     basicAuth:

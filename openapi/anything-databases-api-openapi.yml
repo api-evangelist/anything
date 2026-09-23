@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Anything Assets Databases API
+  title: Anything Databases API
   version: 0.1.0
   description: The Anything API is the fastest way for agents to build and launch mobile and web apps.
 servers:
@@ -142,6 +142,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: getV0ApiDatabases
+      x-operation-id-source: derived
     post:
       summary: Create a database
       description: Creates a new user database. The database is provisioned asynchronously — poll GET /databases/{databaseId} until the status leaves CREATING.
@@ -279,6 +281,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: postV0ApiDatabases
+      x-operation-id-source: derived
   /v0/api/databases/{databaseId}:
     get:
       summary: Get a single database
@@ -404,6 +408,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: getV0ApiDatabasesByDatabaseId
+      x-operation-id-source: derived
     delete:
       summary: Delete a database
       description: Soft-deletes a user database and schedules permanent removal of the underlying infrastructure after a 30-day grace period.
@@ -485,6 +491,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: deleteV0ApiDatabasesByDatabaseId
+      x-operation-id-source: derived
   /v0/api/databases/{databaseId}/query:
     post:
       summary: Query a database
@@ -598,6 +606,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: postV0ApiDatabasesByDatabaseIdQuery
+      x-operation-id-source: derived
   /v0/api/databases/{databaseId}/connection:
     get:
       summary: Get database connection string
@@ -689,6 +699,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: getV0ApiDatabasesByDatabaseIdConnection
+      x-operation-id-source: derived
   /v0/api/databases/{databaseId}/reset:
     post:
       summary: Reset development database
@@ -771,6 +783,8 @@ paths:
                     type: string
                 required:
                 - error
+      operationId: postV0ApiDatabasesByDatabaseIdReset
+      x-operation-id-source: derived
 components:
   securitySchemes:
     basicAuth:

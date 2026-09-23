@@ -1,20 +1,7 @@
 {
   "provider": "anything",
   "sources": [
-    "anything-assets-api-openapi.yml",
-    "anything-databases-api-openapi.yml",
-    "anything-deployments-api-openapi.yml",
-    "anything-domains-api-openapi.yml",
-    "anything-files-api-openapi.yml",
-    "anything-generation-api-openapi.yml",
-    "anything-logs-api-openapi.yml",
-    "anything-messages-api-openapi.yml",
-    "anything-mobile-api-openapi.yml",
-    "anything-organizations-api-openapi.yml",
-    "anything-projects-api-openapi.yml",
-    "anything-secrets-api-openapi.yml",
-    "anything-settings-api-openapi.yml",
-    "anything-user-api-openapi.yml"
+    "_original/anything-openapi-original.json"
   ],
   "outputs": [
     "anything-assets-api-openapi.yml",
@@ -35,6 +22,39 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "anything-openapi-original.json: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "anything-openapi-original.json: declared missing tag: Assets",
+    "anything-openapi-original.json: declared missing tag: Databases",
+    "anything-openapi-original.json: declared missing tag: Deployments",
+    "anything-openapi-original.json: declared missing tag: Domains",
+    "anything-openapi-original.json: declared missing tag: Files",
+    "anything-openapi-original.json: declared missing tag: Generation",
+    "anything-openapi-original.json: declared missing tag: Logs",
+    "anything-openapi-original.json: declared missing tag: Messages",
+    "anything-openapi-original.json: declared missing tag: Mobile",
+    "anything-openapi-original.json: declared missing tag: Organizations",
+    "anything-openapi-original.json: declared missing tag: Projects",
+    "anything-openapi-original.json: declared missing tag: Secrets",
+    "anything-openapi-original.json: declared missing tag: Settings",
+    "anything-openapi-original.json: declared missing tag: User",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "anything-assets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "anything-databases-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "anything-deployments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "anything-domains-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "anything-files-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "anything-generation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "anything-logs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "anything-messages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "anything-mobile-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "anything-organizations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "anything-projects-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "anything-secrets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "anything-settings-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "anything-user-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
