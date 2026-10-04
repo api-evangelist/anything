@@ -1,0 +1,25 @@
+slug: anything
+provider: Anything
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 1
+edges:
+- tag: Deployments
+  spec_file: anything-deployments-api-openapi.yml
+  capability_id: BC-4210.40
+  capability_id_l1: BC-4210
+  capability_name: Deployment Orchestration
+  confidence: 0.8
+  evidence: GET /v0/api/deployments/{deploymentId} "Get deployment status"; POST /v0/api/projects/{projectGroupId}/deployments/rollback
+    "Rollback a deployment"
+  reason: Operations list, inspect and roll back deployments of the built application — deployment orchestration
+    of software changes to production.

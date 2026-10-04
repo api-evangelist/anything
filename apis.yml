@@ -277,6 +277,9 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: CapabilityMap
+  url: capabilities/anything-capability-edges.yml
+  name: Anything Business Capability Map
 - type: DeveloperPortal
   url: https://www.anything.com/docs
 - type: Documentation
