@@ -137,3 +137,9 @@ components:
       type: http
       scheme: basic
       description: 'Use your Anything API key as the Basic auth username and leave the password empty. Example credentials: anything_xxx:'
+x-provenance:
+  method: harvested
+  publisher: Anything
+  source: https://api.anything.com/v0/api/openapi.json
+  note: split by refine-openapis from the provider's own published document, verified by fetch (openapi/_original/*.fetch.json);
+    stamped by stamp-openapi-provenance.py (roadmap#793)
